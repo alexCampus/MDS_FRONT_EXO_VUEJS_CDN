@@ -71,7 +71,7 @@ Utilisation de VueJS avec le CDN
          2. Si la checkbox est coché, on remet le texte non barré
     
 
-##Conclusions
+## Conclusions
 
 1. Quels les avantages et inconvénients de cette méthode d'utilisation de Vue ?
 2. Quels les avantages par rapport à Vanilla JS ?
