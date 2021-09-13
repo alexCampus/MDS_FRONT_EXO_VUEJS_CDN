@@ -5,34 +5,33 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <script src="datas.js"></script>
     <script src="script.js"></script>
 </head>
 <body>
 <div class="container">
-    <h1>To Do List</h1>
+    <div id="titleH1">
+        <h1>Todo App</h1>
+    </div>
+    <h1></h1>
     <div class="col-md-12">
-        <div class="card-hover-shadow-2x mb-3 card">
+        <div class="card-hover-shadow-2x mb-3 card" id="app">
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="fa fa-tasks"></i>&nbsp;Task Lists</div>
             </div>
             <div class="scroll-area-sm">
-                <perfect-scrollbar class="ps-show-limits">
-                    <div style="position: static;" class="ps ps--active-y">
-                        <div class="ps-content">
-                            <ul class=" list-group list-group-flush" id="list">
-
-                            </ul>
-                        </div>
+                <div style="position: static;" class="ps ps--active-y">
+                    <div class="ps-content">
+                        <ul class=" list-group list-group-flush" id="list">
+                        </ul>
                     </div>
-                </perfect-scrollbar>
+                </div>
             </div>
             <div class="d-block text-right card-footer">
                 <div class="form-inline">
                     <div class="form-group mb-2">
                         <label for="title" class="sr-only">Titre</label>
-                        <input type="text" class="form-control" id="title" name="title" value="" placeholder="Titre">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Titre">
                     </div>
                     <div class="form-group mx-sm-3 mb-2">
                         <label for="author" class="sr-only">Auteur</label>

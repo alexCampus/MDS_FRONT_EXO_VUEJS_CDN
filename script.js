@@ -6,11 +6,11 @@ function setItem(item) {
         '                                        <div class="widget-content-wrapper" data-id="' + item.id + '">\n' +
         '                                            <div class="widget-content-left mr-2">\n' +
         '                                                <div class="custom-checkbox custom-control">' +
-        '<input class="custom-control-input checkbox" id="exampleCustomCheckbox_' + item.id + '" type="checkbox" ' + (item.status ? 'checked' : '') + '><label\n' +
+        '<input class="custom-control-input checkbox" id="exampleCustomCheckbox_' + item.id + '" type="checkbox" ' + (item.isChecked ? 'checked' : '') + '><label\n' +
         '                                                        class="custom-control-label" for="exampleCustomCheckbox_' + item.id + '">&nbsp;</label></div>\n' +
         '                                            </div>\n' +
         '                                            <div class="widget-content-left">\n' +
-        '                                                <div class="widget-heading">' + (item.status ? '<s>' + item.title + '</s>' : item.title) + '\n' +
+        '                                                <div class="widget-heading">' + (item.isChecked ? '<s>' + item.title + '</s>' : item.title) + '\n' +
         '                                                </div>\n' +
         '                                                <div class="widget-subheading"><i>By ' + item.author + '</i></div>\n' +
         '                                            </div>\n' +
@@ -34,10 +34,18 @@ function addTodo() {
     let btn = document.getElementById('addTodoBtn');
 
     btn.addEventListener('click', event => {
-        let id = datas.length + 1;
+        let maxId = 0;
+        if (datas.length > 0) {
+            maxId = datas.reduce(function (prev, current) {
+                return (prev.id > current.id) ? prev : current;
+            });
+        }
+
+        let id = maxId === 0 ? 1 : maxId.id + 1;
+
         const title = document.getElementById('title').value;
         const author = document.getElementById('author').value;
-        datas = [{ id: id, title: title, author: author, status: 0 }, ...datas];
+        datas = [{ id: id, title: title, author: author, isChecked: false }, ...datas];
         reRender();
     });
 }
@@ -64,8 +72,11 @@ function deleteTodo() {
 function checkTodo() {
     let btn = document.getElementsByClassName('btn-outline-success');
     Array.from(btn).forEach(el => el.addEventListener('click', event => {
-        let item = datas.find(item => item.id === parseInt(el.parentNode.parentNode.dataset.id));
-        item.status = true;
+        datas.map(item => {
+            item.isChecked = item.id === parseInt(el.parentNode.parentNode.dataset.id);
+        });
+        // let item = datas.find(item => item.id === parseInt(el.parentNode.parentNode.dataset.id));
+        // item.isChecked = true;
         reRender();
     }));
 }
@@ -73,8 +84,13 @@ function checkTodo() {
 function unCheckTodo() {
     let btn = document.getElementsByClassName('custom-checkbox');
     Array.from(btn).forEach(el => el.addEventListener('click', event => {
-        let item = datas.find(item => item.id === parseInt(el.parentNode.parentNode.dataset.id));
-        item.status = !item.status;
+        datas.map(item => {
+            if (item.id === parseInt(el.parentNode.parentNode.dataset.id)) {
+                item.isChecked = !item.isChecked;
+            }
+        });
+        // let item = datas.find(item => item.id === parseInt(el.parentNode.parentNode.dataset.id));
+        // item.isChecked = !item.isChecked;
         reRender();
     }));
 }
