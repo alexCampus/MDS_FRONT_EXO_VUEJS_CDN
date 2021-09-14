@@ -75,8 +75,6 @@ function checkTodo() {
         datas.map(item => {
             item.isChecked = item.id === parseInt(el.parentNode.parentNode.dataset.id);
         });
-        // let item = datas.find(item => item.id === parseInt(el.parentNode.parentNode.dataset.id));
-        // item.isChecked = true;
         reRender();
     }));
 }
@@ -89,8 +87,6 @@ function unCheckTodo() {
                 item.isChecked = !item.isChecked;
             }
         });
-        // let item = datas.find(item => item.id === parseInt(el.parentNode.parentNode.dataset.id));
-        // item.isChecked = !item.isChecked;
         reRender();
     }));
 }
